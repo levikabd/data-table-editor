@@ -33,7 +33,7 @@ std::string getNullTime()
 {
     std::string nullTime="";
     nullTime = "00:00:00";
-    // std::cout << "nullTime: " << nullTime << " (" <<  std::to_string(nullTime.length()) << "int)\n";
+    // std::cout << "nullTime: " << nullTime << " (" <<  std::to_string(nullTime.length()) << "ch)\n";
 
     return nullTime;    
 };
@@ -42,7 +42,7 @@ std::string getNullDate()
 {
     std::string nullDate="";
     nullDate = "0000-00-00";
-    // std::cout << "nullDate: " << nullDate <<  " (" << std::to_string(nullDate.length()) << "int)\n";
+    // std::cout << "nullDate: " << nullDate <<  " (" << std::to_string(nullDate.length()) << "ch)\n";
 
     return nullDate;    
 };
@@ -51,7 +51,7 @@ std::string getNullDTime()
 {
     std::string nulldtime="";
     nulldtime = "0000-00-00 00:00:00";
-    // std::cout << "nulldtime: " << nulldtime << " (" << std::to_string(nulldtime.length()) << "int)\n";
+    // std::cout << "nulldtime: " << nulldtime << " (" << std::to_string(nulldtime.length()) << "ch)\n";
 
     return nulldtime;    
 };
@@ -66,9 +66,23 @@ std::string getTime()
     getNumTime(curTime->tm_hour) + ":" +
     getNumTime(curTime->tm_min) + ":" +
     getNumTime(curTime->tm_sec);
-    // std::cout << "outTime: " << outTime << " (" << std::to_string(outTime.length()) << "int)\n";
+    // std::cout << "outTime: " << outTime << " (" << std::to_string(outTime.length()) << "ch)\n";
 
     return outTime;    
+};
+
+std::string getTimeHM()
+{
+    struct tm *curTime=getTmTime();
+    
+    // '09:00'::TIME AS time_value, 
+    std::string outTimeHM="";
+    outTimeHM=
+    getNumTime(curTime->tm_hour) + ":" +
+    getNumTime(curTime->tm_min);
+    // std::cout << "outTimeHM: " << outTimeHM << " (" << std::to_string(outTimeHM.length()) << "ch)\n";
+
+    return outTimeHM;    
 };
 
 std::string getDate()
@@ -80,7 +94,7 @@ std::string getDate()
     outDate= std::to_string(curTime->tm_year + 1900) + "-" + 
     getNumDate(curTime->tm_mon + 1) + "-"+ 
     getNumDate(curTime->tm_mday);
-    // std::cout << "outDate: " << outDate << " (" << std::to_string(outDate.length()) << "int)\n";
+    // std::cout << "outDate: " << outDate << " (" << std::to_string(outDate.length()) << "ch)\n";
 
     return outDate;    
 };
@@ -97,7 +111,7 @@ std::string getDTime()
     getNumTime(curTime->tm_hour) + ":" +
     getNumTime(curTime->tm_min) + ":" +
     getNumTime(curTime->tm_sec);
-    // std::cout << "outdtime: " << outdtime << " (" << std::to_string(outdtime.length()) << "int)\n";
+    // std::cout << "outdtime: " << outdtime << " (" << std::to_string(outdtime.length()) << "ch)\n";
 
     return outdtime;    
 };

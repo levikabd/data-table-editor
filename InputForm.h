@@ -8,7 +8,15 @@
 class InputForm
 {
 private:
+    // timereg, id, +++
+    // values.push_back(std::make_pair("timereg",""));
+    // values.push_back(std::make_pair("id",""));
+    // values.push_back(std::make_pair("object",""));
+    // values.push_back(std::make_pair("indicator",""));
+    // values.push_back(std::make_pair("period",""));
+    // values.push_back(std::make_pair("value",""));
     std::vector<std::pair<std::string, std::string>> values;
+    std::vector<std::pair<std::string, std::string>> inValues;
     struct Field
     {
         int sKeyY=0;
@@ -24,13 +32,15 @@ public:
     // InputForm();
     // ~InputForm();
 
-    int importKeys(std::vector<std::pair<std::string, std::string>> inValues);
+    int importKeys(std::vector<std::pair<std::string, std::string>> inVal);
 
     void definingFields();
 
     void updateFields(int activeField);
 
-    int runInputForm(std::vector<std::pair<std::string, std::string>> inValues);
+    int runInputForm(std::vector<std::pair<std::string, std::string>> inVal);
+
+    void saveValues();
 
     void printValues();
 

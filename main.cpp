@@ -9,6 +9,7 @@ int main() {
 
     std::vector<std::pair<std::string, std::string>> values;
 
+    values.push_back(std::make_pair("timereg",""));
     values.push_back(std::make_pair("id",""));
     values.push_back(std::make_pair("object",""));
     values.push_back(std::make_pair("indicator",""));

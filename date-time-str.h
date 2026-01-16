@@ -20,6 +20,8 @@ std::string getNullDTime();
 
 std::string getTime();
 
+std::string getTimeHM();
+
 std::string getDate();
 
 std::string getDTime();
