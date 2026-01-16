@@ -169,13 +169,11 @@
         attron(COLOR_PAIR(8));
         mvaddstr(fields.at(i).sValY,  4, "<DON'T SAVE(ESC)>");  //  "<  CANCEL(ESC)  >"
         mvaddstr(fields.at(i).sValY, 23, "< SAVE+EXIT (OK)>");  //  "<      SAVE     >"
-        // mvaddstr(fields.at(i).sValY,  4, "<  CANCEL(ESC)  >");  // "<DON'T SAVE(ESC)>"
-        // mvaddstr(fields.at(i).sValY, 23, "<      SAVE     >");  // "< SAVE+EXIT (OK)>"
         // mvaddstr(fields.at(i).sValY, 42, "<     OTHER     >");
         attroff(COLOR_PAIR(8));
 
         size_t x = 3;
-        char sChar= ' ', rChar=' ';     
+        // char sChar= ' ', rChar=' ';     
         //for (size_t count = 0; count < 3; count++)
         for (size_t count = 0; count < 2; count++)
         {
@@ -193,10 +191,8 @@
 
             if (activeField==inValues.size()+count)
             {
-                // sChar='_';
-                // rChar='|';
-                // sChar=ACS_HLINE;
-                // rChar=ACS_VLINE;
+                // sChar='_';// sChar=ACS_HLINE;
+                // rChar='|'; // rChar=ACS_VLINE;
             // }else if (activeField==values.size()+1)
             // {
                 // mvwaddch(stdscr, fields.at(i).sValY+1, x, rChar);
@@ -224,15 +220,22 @@
 
         //setlocale(LC_ALL, "ru_RU.UTF-8") ; 
         setlocale(LC_ALL, "") ; 
-        stdscr = initscr();            // инициализация ncurses
-        // Получаем размеры окна
+        stdscr = initscr();            
+        
         int height, width;
         getmaxyx(stdscr, height, width);
+        
         int reqHeight= inValues.size()*2 + 7;
         if (reqHeight>height)
         {
             std::cout << "This form requires a large window height (units" << reqHeight << ").\n";
             std::cout << "Current window height: " << height << ".\n";
+
+            curs_set(1);
+            refresh();
+            clear();        
+            endwin();         
+
             return -1;
         };        
 
@@ -242,29 +245,36 @@
         curs_set(0);        // скрыть курсор
         keypad(stdscr, TRUE); // включить обработку клавиш
 
-        start_color();      // инициализация цветов
+        // if (!has_colors()) {
+        //     endwin();
+        //     printf("Терминал не поддерживает цвета!\n");
+            
+            start_color();      // инициализация цветов
 
-        //Available colors:
-        // COLOR_BLACK
-        // COLOR_RED
-        // COLOR_GREEN
-        // COLOR_YELLOW
-        // COLOR_BLUE
-        // COLOR_CYAN
-        // COLOR_WHITE
+            //Available colors:
+            // COLOR_BLACK
+            // COLOR_RED
+            // COLOR_GREEN
+            // COLOR_YELLOW
+            // COLOR_BLUE
+            // COLOR_CYAN
+            // COLOR_WHITE
 
-        // init_pair(1, COLOR_GREEN, COLOR_BLACK); // зеленый текст на черном фоне
-        // init_pair(2, COLOR_BLUE, COLOR_BLACK); // Синий
-        // init_pair(3, COLOR_CYAN, COLOR_BLACK); // Голубой
-        // init_pair(4, COLOR_RED, COLOR_BLACK);  // Красный
-        init_pair(5, COLOR_WHITE, COLOR_BLUE); // белый текст на синем ФОН
-        init_pair(6, COLOR_WHITE, COLOR_GREEN); // белый текст на зеленом
-        init_pair(7, COLOR_WHITE, COLOR_BLACK); // белый текст на черном  ПОЛЯ 
-        init_pair(8, COLOR_BLACK, COLOR_CYAN); // КНОПКИ
+            // init_pair(1, COLOR_GREEN, COLOR_BLACK); // зеленый текст на черном фоне
+            // init_pair(2, COLOR_BLUE, COLOR_BLACK); // Синий
+            // init_pair(3, COLOR_CYAN, COLOR_BLACK); // Голубой
+            // init_pair(4, COLOR_RED, COLOR_BLACK);  // Красный
+            init_pair(5, COLOR_WHITE, COLOR_BLUE); // белый текст на синем ФОН
+            init_pair(6, COLOR_WHITE, COLOR_GREEN); // белый текст на зеленом
+            init_pair(7, COLOR_WHITE, COLOR_BLACK); // белый текст на черном  ПОЛЯ 
+            init_pair(8, COLOR_BLACK, COLOR_CYAN); // КНОПКИ
+
+        //     //return 1;
+        // };
 
         attron(COLOR_PAIR(5));
         box(stdscr, ACS_VLINE, ACS_HLINE);
-        //box(stdscr, 0, 0);             // рамка вокруг окна
+        //box(stdscr, 0, 0);             
         mvwaddch(stdscr, 0, 0, ACS_ULCORNER);
         mvwaddch(stdscr, 0, COLS-1, ACS_URCORNER);
         mvwaddch(stdscr, LINES-1, 0, ACS_LLCORNER);
@@ -287,19 +297,6 @@
             updateFields(activeField);
             wrefresh(stdscr);
             refresh();
-            
-            // for (size_t i = 0; i < fields.size(); i++)
-            // {
-            //     attron(COLOR_PAIR(1));  // Включаем зеленый цвет
-            //     if (i==activeField)
-            //     {
-            //         mvaddch(fields.at(i).sValY, fields.at(i).sValX - 2, '>');  // Помечаем стрелкой
-            //     }else{
-            //         mvaddch(fields.at(i).sValY, fields.at(i).sValX - 2, ' ');  // Помечаем стрелкой
-            //     };
-            //     attroff(COLOR_PAIR(1));  // Отключаем цвет                
-            // };                        
-            // refresh();  // Обновляем экран
             
             int ch = getch();  // Получаем нажатую клавишу
             
