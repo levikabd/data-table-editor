@@ -62,9 +62,6 @@
         //size_t i = 0; +4
 
         attron(COLOR_PAIR(5));
-
-        //mvaddstr(2, 20,  "DATA ENTRY FORM");
-        
         mvaddstr(0, 20,  "  DATA ENTRY FORM  ");
         mvaddstr(2, 4,  "   key");
         mvaddstr(2, 20, "   value");
@@ -72,18 +69,18 @@
         //attron(COLOR_PAIR(3));
         for (size_t x = 4; x < 70; x++)
         {
-            mvwaddch(stdscr, 1, x, ACS_HLINE);  // Горизонтальная линия 
-            mvwaddch(stdscr, 3, x, ACS_HLINE);  // Горизонтальная линия 
+            mvwaddch(stdscr, 1, x, ACS_HLINE);  // Horizontal line
+            mvwaddch(stdscr, 3, x, ACS_HLINE);  // Horizontal line
         };
 
-        mvwaddch(stdscr, 2,  3, ACS_VLINE);  // Вертикальная линия слева
-        mvwaddch(stdscr, 2, 19, ACS_VLINE);  // Вертикальная линия в середине
-        mvwaddch(stdscr, 2, 70, ACS_VLINE);  // Вертикальная линия справа
-        mvwaddch(stdscr, 3,  3, ACS_VLINE);  // Вертикальная линия слева
-        mvwaddch(stdscr, 3, 19, ACS_VLINE);  // Вертикальная линия в середине
-        mvwaddch(stdscr, 3, 70, ACS_VLINE);  // Вертикальная линия справа
+        mvwaddch(stdscr, 2,  3, ACS_VLINE);  // The vertical line on the left 
+        mvwaddch(stdscr, 2, 19, ACS_VLINE);  // The vertical line in the middle 
+        mvwaddch(stdscr, 2, 70, ACS_VLINE);  // The vertical line on the right
+        mvwaddch(stdscr, 3,  3, ACS_VLINE);  // The vertical line on the left 
+        mvwaddch(stdscr, 3, 19, ACS_VLINE);  // The vertical line in the middle 
+        mvwaddch(stdscr, 3, 70, ACS_VLINE);  // The vertical line on the right
 
-        // // Позиции полей ввода
+        // The positions of the input fields
         size_t i = 0;
         for ( i = 0; i <= inValues.size(); i++)
         {
@@ -101,23 +98,23 @@
         {
             for (size_t x = 4; x < 70; x++)
             {
-                mvwaddch(stdscr, fields.at(y).sKeyY+1, x, ACS_HLINE);  // Горизонтальная линия снизу
+                mvwaddch(stdscr, fields.at(y).sKeyY+1, x, ACS_HLINE);  // Horizontal line
             };
         };
 
         y = 0;
         for ( y = 0; y < inValues.size()-1; y++)
         {
-            mvwaddch(stdscr, fields.at(y).sKeyY,  3, ACS_VLINE);  // Вертикальная линия слева
-            mvwaddch(stdscr, fields.at(y).sKeyY, 19, ACS_VLINE);  // Вертикальная линия в середине
-            mvwaddch(stdscr, fields.at(y).sKeyY, 70, ACS_VLINE);  // Вертикальная линия справа
-            mvwaddch(stdscr, fields.at(y).sKeyY+1, 3, ACS_VLINE);  // Вертикальная линия слева
-            mvwaddch(stdscr, fields.at(y).sKeyY+1,19, ACS_VLINE);  // Вертикальная линия в середине
-            mvwaddch(stdscr, fields.at(y).sKeyY+1,70, ACS_VLINE);  // Вертикальная линия справа
+            mvwaddch(stdscr, fields.at(y).sKeyY,  3, ACS_VLINE);  // The vertical line on the left 
+            mvwaddch(stdscr, fields.at(y).sKeyY, 19, ACS_VLINE);  // The vertical line in the middle 
+            mvwaddch(stdscr, fields.at(y).sKeyY, 70, ACS_VLINE);  // The vertical line on the right
+            mvwaddch(stdscr, fields.at(y).sKeyY+1, 3, ACS_VLINE);  // The vertical line on the left
+            mvwaddch(stdscr, fields.at(y).sKeyY+1,19, ACS_VLINE);  // The vertical line in the middle
+            mvwaddch(stdscr, fields.at(y).sKeyY+1,70, ACS_VLINE);  // The vertical line on the right
         };
-        mvwaddch(stdscr, fields.at(y).sKeyY,  3, ACS_VLINE);  // Вертикальная линия слева
-        mvwaddch(stdscr, fields.at(y).sKeyY, 19, ACS_VLINE);  // Вертикальная линия в середине
-        mvwaddch(stdscr, fields.at(y).sKeyY, 70, ACS_VLINE);  // Вертикальная линия справа
+        mvwaddch(stdscr, fields.at(y).sKeyY,  3, ACS_VLINE);  // The vertical line on the left 
+        mvwaddch(stdscr, fields.at(y).sKeyY, 19, ACS_VLINE);  // The vertical line in the middle 
+        mvwaddch(stdscr, fields.at(y).sKeyY, 70, ACS_VLINE);  // The vertical line on the right
 
         mvwaddch(stdscr, 1, 3, ACS_ULCORNER);
         mvwaddch(stdscr, 1, 70, ACS_URCORNER);
@@ -155,12 +152,12 @@
             if (i==activeField)
             {
                 attron(COLOR_PAIR(7));
-                mvaddstr(fields.at(i).sValY, fields.at(i).sValX, "                                                  ");  // Очищаем место под ID
+                mvaddstr(fields.at(i).sValY, fields.at(i).sValX, "                                                  ");  // clearing the field
                 mvprintw(fields.at(i).sValY, fields.at(i).sValX, "%s", inValues.at(i).second.c_str());   //         
                 attroff(COLOR_PAIR(7));  
             }else{
                 attron(COLOR_PAIR(8));
-                    mvaddstr(fields.at(i).sValY, fields.at(i).sValX, "                                                  ");  // Очищаем место под ID
+                    mvaddstr(fields.at(i).sValY, fields.at(i).sValX, "                                                  ");  // clearing the field
                     mvprintw(fields.at(i).sValY, fields.at(i).sValX, "%s", inValues.at(i).second.c_str());   //         
                 attroff(COLOR_PAIR(8));
             };
@@ -239,17 +236,17 @@
             return -1;
         };        
 
-        cbreak();            // режим без буферизации
-        raw();               // режим raw для корректного ввода
-        noecho();           // не отображать вводимые символы
-        curs_set(0);        // скрыть курсор
-        keypad(stdscr, TRUE); // включить обработку клавиш
+        cbreak();            // no buffering mode
+        raw();               // raw mode for correct input
+        noecho();           // do not display the entered characters
+        curs_set(0);        // hide the cursor
+        keypad(stdscr, TRUE); // enable key processing
 
         // if (!has_colors()) {
         //     endwin();
-        //     printf("Терминал не поддерживает цвета!\n");
+        //     printf("The terminal does not support colors!\n");
             
-            start_color();      // инициализация цветов
+            start_color();      // init color
 
             //Available colors:
             // COLOR_BLACK
@@ -260,14 +257,14 @@
             // COLOR_CYAN
             // COLOR_WHITE
 
-            // init_pair(1, COLOR_GREEN, COLOR_BLACK); // зеленый текст на черном фоне
-            // init_pair(2, COLOR_BLUE, COLOR_BLACK); // Синий
-            // init_pair(3, COLOR_CYAN, COLOR_BLACK); // Голубой
-            // init_pair(4, COLOR_RED, COLOR_BLACK);  // Красный
-            init_pair(5, COLOR_WHITE, COLOR_BLUE); // белый текст на синем ФОН
-            init_pair(6, COLOR_WHITE, COLOR_GREEN); // белый текст на зеленом
-            init_pair(7, COLOR_WHITE, COLOR_BLACK); // белый текст на черном  ПОЛЯ 
-            init_pair(8, COLOR_BLACK, COLOR_CYAN); // КНОПКИ
+            // init_pair(1, COLOR_GREEN, COLOR_BLACK); // COLOR_GREEN text on a black background
+            // init_pair(2, COLOR_BLUE, COLOR_BLACK); // COLOR_BLUE text on a black background
+            // init_pair(3, COLOR_CYAN, COLOR_BLACK); // COLOR_CYAN text on a black background
+            // init_pair(4, COLOR_RED, COLOR_BLACK);  // COLOR_RED text on a black background
+            init_pair(5, COLOR_WHITE, COLOR_BLUE); // COLOR_WHITE text on a BLUE background,    background
+            // init_pair(6, COLOR_WHITE, COLOR_GREEN); // COLOR_WHITE text on a GREEN background,   not
+            init_pair(7, COLOR_WHITE, COLOR_BLACK); // COLOR_WHITE text on a black background,   the input field
+            init_pair(8, COLOR_BLACK, COLOR_CYAN); // keys and fields
 
         //     //return 1;
         // };
@@ -281,24 +278,24 @@
         mvwaddch(stdscr, LINES-1, COLS-1, ACS_LRCORNER);
         attroff(COLOR_PAIR(5));
 
-        wbkgd(stdscr, COLOR_PAIR(5) | ' ');     // Установка фона окна
+        wbkgd(stdscr, COLOR_PAIR(5) | ' ');     // Setting the window background
 
         //wrefresh(stdscr)
         //refresh();
 
         definingFields();        
         
-        // Текущее активное поле
+        // Current active field
         int activeField = 2; // 0 - timereg, 1 - id, 2 - object, 3 - indicator ... (values + 2, esc/save) 
         
-        // Основной цикл обработки ввода
+        // The main input processing cycle
         while (true) {
 
             updateFields(activeField);
             wrefresh(stdscr);
             refresh();
             
-            int ch = getch();  // Получаем нажатую клавишу
+            int ch = getch();  // We get a pressed key
             
             if (ch==KEY_DOWN)
             {
@@ -315,7 +312,7 @@
             if (activeField == 0){ activeField= inValues.size()+1;};                
             if (activeField == 1){ activeField= inValues.size()+1;};                
             
-            if (ch==10)   // Обработка нажатия Enter
+            if (ch==10)   // the Enter key
             {
 
                 if (activeField==inValues.size())
@@ -345,7 +342,7 @@
                 };
            };
 
-            if (ch == KEY_BACKSPACE || ch == 127) {  // Обработка Backspace
+            if (ch == KEY_BACKSPACE || ch == 127) {  // the Backspace   key
                 if (activeField<inValues.size()) {
                     std::string value=inValues.at(activeField).second;
                     if (!value.empty()){
@@ -355,7 +352,7 @@
                 };
             };
     
-            if (isprint(ch)) {  // Если нажата печатная клавиша
+            if (isprint(ch)) {  // If the print key is pressed
                 if (activeField<inValues.size()) {
                     std::string value=inValues.at(activeField).second;
                     value += ch;
@@ -363,7 +360,7 @@
                 };
             };
 
-            if (ch == 27) {  // handle Esc
+            if (ch == 27) {  // the Esc key
                 curs_set(1);
                 clear();
                 refresh();
@@ -390,8 +387,7 @@
         for (size_t i = 0; i < values.size(); i++)
         {            
             std::cout << values.at(i).first << ": " << values.at(i).second << "\n";            
-        };        
-        //std::cout << "result: ID: " << idStr << ", Object: " << objectStr << ", Indicator: " << indicatorStr << ", Period: " << periodStr << ", Value: " << valueStr << ".\n";
+        };
         std::cout << "------------------------------\n";
     };
 
